@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="/static/style.css">
+    <title>Players</title>
+</head>
+<body>
+    <h1>Players</h1>
+    <a href="/players/add">Add New Player</a>
+    <br><br>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+        {% for player in players %}
+        <tr>
+            <td>{{ player.player_id }}</td>
+            <td>{{ player.name }}</td>
+            <td>{{ player.email }}</td>
+            <td><a href="/players/delete/{{ player.player_id }}" onclick="return confirm('Are you sure?')">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/">Back to Home</a>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="/static/style.css">
+    <title>Schedule Match</title>
+</head>
+<body>
+    <h1>Schedule New Match</h1>
+    <form action="/matches/add" method="POST">
+        <label>Tournament (Select one):</label><br>
+        <select name="tournament_id" required>
+            {% for tournament in tournaments %}
+                <option value="{{ tournament.tournament_id }}">{{ tournament.name }}</option>
+            {% endfor %}
+        </select><br><br>
+        <label>Team 1 (Select one):</label><br>
+        <select name="team1_id" required>
+            {% for team in teams %}
+                <option value="{{ team.team_id }}">{{ team.name }}</option>
+            {% endfor %}
+        </select><br><br>
+        <label>Team 2 (Select one):</label><br>
+        <select name="team2_id" required>
+            {% for team in teams %}
+                <option value="{{ team.team_id }}">{{ team.name }}</option>
+            {% endfor %}
+        </select><br><br>
+        <label>Match Date/Time:</label><br>
+        <input type="datetime-local" name="match_date" required><br><br>
+        <input type="submit" value="Schedule Match">
+    </form>
+    <br>
+    <a href="/matches">Back to Matches</a>
+</body>
+</html>

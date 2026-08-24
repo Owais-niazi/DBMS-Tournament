@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="/static/style.css">
+    <title>Add Tournament</title>
+</head>
+<body>
+    <h1>Add New Tournament</h1>
+    <form action="/tournaments/add" method="POST">
+        <label>Tournament Name:</label><br>
+        <input type="text" name="name" required><br><br>
+        <label>Start Date:</label><br>
+        <input type="date" name="start_date" required><br><br>
+        <label>End Date:</label><br>
+        <input type="date" name="end_date" required><br><br>
+        <label>Game (Select one):</label><br>
+        <select name="game_id" required>
+            {% for game in games %}
+                <option value="{{ game.game_id }}">{{ game.name }}</option>
+            {% endfor %}
+        </select><br><br>
+        <input type="submit" value="Add Tournament">
+    </form>
+    <br>
+    <a href="/tournaments">Back to Tournaments</a>
+</body>
+</html>

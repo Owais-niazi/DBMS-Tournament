@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="/static/style.css">
+    <title>Add Registration</title>
+</head>
+<body>
+    <h1>Add New Registration</h1>
+    <form action="/registrations/add" method="POST">
+        <label>Tournament (Select one):</label><br>
+        <select name="tournament_id" required>
+            {% for tournament in tournaments %}
+                <option value="{{ tournament.tournament_id }}">{{ tournament.name }}</option>
+            {% endfor %}
+        </select><br><br>
+        <label>Team (Select one):</label><br>
+        <select name="team_id" required>
+            {% for team in teams %}
+                <option value="{{ team.team_id }}">{{ team.name }}</option>
+            {% endfor %}
+        </select><br><br>
+        <input type="submit" value="Register Team">
+    </form>
+    <br>
+    <a href="/registrations">Back to Registrations</a>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="/static/style.css">
+    <title>Results</title>
+</head>
+<body>
+    <h1>Results</h1>
+    <a href="/results/add">Record New Result</a>
+    <br><br>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Match ID</th>
+            <th>Winner Team ID</th>
+            <th>Score Team 1</th>
+            <th>Score Team 2</th>
+            <th>Actions</th>
+        </tr>
+        {% for result in results %}
+        <tr>
+            <td>{{ result.result_id }}</td>
+            <td>{{ result.match_id }}</td>
+            <td>{{ result.winner_team_id }}</td>
+            <td>{{ result.score_team1 }}</td>
+            <td>{{ result.score_team2 }}</td>
+            <td><a href="/results/delete/{{ result.result_id }}" onclick="return confirm('Are you sure?')">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/">Back to Dashboard</a>
+</body>
+</html>

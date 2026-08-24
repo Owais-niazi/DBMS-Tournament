@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="/static/style.css">
+    <title>Games</title>
+</head>
+<body>
+    <h1>Games</h1>
+    <a href="/games/add">Add New Game</a>
+    <br><br>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Genre</th>
+            <th>Actions</th>
+        </tr>
+        {% for game in games %}
+        <tr>
+            <td>{{ game.game_id }}</td>
+            <td>{{ game.name }}</td>
+            <td>{{ game.genre }}</td>
+            <td><a href="/games/delete/{{ game.game_id }}" onclick="return confirm('Are you sure?')">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/">Back to Home</a>
+</body>
+</html>

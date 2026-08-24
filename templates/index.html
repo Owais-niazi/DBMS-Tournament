@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="/static/style.css">
+    <title>Tournament Dashboard</title>
+</head>
+<body>
+    <h1>Gaming Tournament Management System</h1>
+    <a href="/logout">Logout</a>
+    
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <p style="color: red; font-weight: bold;">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    
+    <nav>
+        <ul>
+            <li><a href="/players">Players</a></li>
+            <li><a href="/teams">Teams</a></li>
+            <li><a href="/games">Games</a></li>
+            <li><a href="/tournaments">Tournaments</a></li>
+            <li><a href="/registrations">Registrations</a></li>
+            <li><a href="/matches">Matches</a></li>
+            <li><a href="/results">Results</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

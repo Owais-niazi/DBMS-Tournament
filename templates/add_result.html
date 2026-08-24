@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="/static/style.css">
+    <title>Add Result</title>
+</head>
+<body>
+    <h1>Record Match Result</h1>
+    <form action="/results/add" method="POST">
+        <label>Match (Select one):</label><br>
+        <select name="match_id" required>
+            {% for match in matches %}
+                <option value="{{ match.match_id }}">Match {{ match.match_id }} ({{ match.match_date }})</option>
+            {% endfor %}
+        </select><br><br>
+        <label>Winner Team (Select one):</label><br>
+        <select name="winner_team_id" required>
+            {% for team in teams %}
+                <option value="{{ team.team_id }}">{{ team.name }}</option>
+            {% endfor %}
+        </select><br><br>
+        <label>Score Team 1:</label><br>
+        <input type="number" name="score_team1" required><br><br>
+        <label>Score Team 2:</label><br>
+        <input type="number" name="score_team2" required><br><br>
+        <input type="submit" value="Record Result">
+    </form>
+    <br>
+    <a href="/results">Back to Results</a>
+</body>
+</html>

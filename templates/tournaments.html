@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="/static/style.css">
+    <title>Tournaments</title>
+</head>
+<body>
+    <h1>Tournaments</h1>
+    <a href="/tournaments/add">Add New Tournament</a>
+    <br><br>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Game ID</th>
+            <th>Actions</th>
+        </tr>
+        {% for tournament in tournaments %}
+        <tr>
+            <td>{{ tournament.tournament_id }}</td>
+            <td>{{ tournament.name }}</td>
+            <td>{{ tournament.start_date }}</td>
+            <td>{{ tournament.end_date }}</td>
+            <td>{{ tournament.game_id }}</td>
+            <td><a href="/tournaments/delete/{{ tournament.tournament_id }}" onclick="return confirm('Are you sure?')">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/">Back to Home</a>
+</body>
+</html>

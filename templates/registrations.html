@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="/static/style.css">
+    <title>Registrations</title>
+</head>
+<body>
+    <h1>Registrations</h1>
+    <a href="/registrations/add">Add New Registration</a>
+    <br><br>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Tournament ID</th>
+            <th>Team ID</th>
+            <th>Registration Date</th>
+            <th>Actions</th>
+        </tr>
+        {% for registration in registrations %}
+        <tr>
+            <td>{{ registration.registration_id }}</td>
+            <td>{{ registration.tournament_id }}</td>
+            <td>{{ registration.team_id }}</td>
+            <td>{{ registration.registration_date }}</td>
+            <td><a href="/registrations/delete/{{ registration.registration_id }}" onclick="return confirm('Are you sure?')">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/">Back to Home</a>
+</body>
+</html>

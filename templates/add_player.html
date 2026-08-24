@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="/static/style.css">
+    <title>Add Player</title>
+</head>
+<body>
+    <h1>Add New Player</h1>
+    <form action="/players/add" method="POST">
+        <label>Name:</label><br>
+        <input type="text" name="name" required><br><br>
+        <label>Email:</label><br>
+        <input type="email" name="email" required><br><br>
+        <label>User (Select one):</label><br>
+        <select name="user_id" required>
+            {% for user in users %}
+                <option value="{{ user.user_id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select><br><br>
+        <input type="submit" value="Add Player">
+    </form>
+    <br>
+    <a href="/players">Back to Players</a>
+</body>
+</html>
