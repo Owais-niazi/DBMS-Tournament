@@ -1,18 +1,53 @@
 <!DOCTYPE html>
 <html>
-<head><link rel="stylesheet" href="/static/style.css">
+<head>
+    <link rel="stylesheet" href="/static/style.css">
     <title>Add Game</title>
 </head>
 <body>
-    <h1>Add New Game</h1>
-    <form action="/games/add" method="POST">
-        <label>Game Name:</label><br>
-        <input type="text" name="name" required><br><br>
-        <label>Genre:</label><br>
-        <input type="text" name="genre"><br><br>
-        <input type="submit" value="Add Game">
-    </form>
-    <br>
-    <a href="/games">Back to Games</a>
+<nav class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="/"><span class="logo"></span>Tournament Manager</a>
+        <ul class="nav-links">
+            <li><a href="/players">Players</a></li>
+            <li><a href="/teams">Teams</a></li>
+            <li><a class="active" href="/games">Games</a></li>
+            <li><a href="/tournaments">Tournaments</a></li>
+            <li><a href="/registrations">Registrations</a></li>
+            <li><a href="/matches">Matches</a></li>
+            <li><a href="/results">Results</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a class="btn btn-danger" href="/logout">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="container">
+        <div class="page-head">
+            <h1>Add New Game</h1>
+        </div>
+
+        <div class="form-card">
+            <form action="/games/add" method="POST">
+                <div class="field">
+                    <label>Game Name</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="field">
+                    <label>Genre</label>
+                    <input type="text" name="genre">
+                </div>
+                <input type="submit" value="Add Game">
+            </form>
+            <div class="form-footer">
+                <a class="btn btn-ghost" href="/games">Back to Games</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">Gaming Tournament Management System &copy; 2026</footer>
 </body>
 </html>

@@ -1,23 +1,58 @@
 <!DOCTYPE html>
 <html>
-<head><link rel="stylesheet" href="/static/style.css">
+<head>
+    <link rel="stylesheet" href="/static/style.css">
     <title>Add Team</title>
 </head>
 <body>
-    <h1>Add New Team</h1>
-    <form action="/teams/add" method="POST">
-        <label>Team Name:</label><br>
-        <input type="text" name="name" required><br><br>
-        <label>Captain (Select one):</label><br>
-        <select name="captain_id">
-            <option value="">None</option>
-            {% for player in players %}
-                <option value="{{ player.player_id }}">{{ player.name }}</option>
-            {% endfor %}
-        </select><br><br>
-        <input type="submit" value="Add Team">
-    </form>
-    <br>
-    <a href="/teams">Back to Teams</a>
+<nav class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="/"><span class="logo"></span>Tournament Manager</a>
+        <ul class="nav-links">
+            <li><a href="/players">Players</a></li>
+            <li><a class="active" href="/teams">Teams</a></li>
+            <li><a href="/games">Games</a></li>
+            <li><a href="/tournaments">Tournaments</a></li>
+            <li><a href="/registrations">Registrations</a></li>
+            <li><a href="/matches">Matches</a></li>
+            <li><a href="/results">Results</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a class="btn btn-danger" href="/logout">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="container">
+        <div class="page-head">
+            <h1>Add New Team</h1>
+        </div>
+
+        <div class="form-card">
+            <form action="/teams/add" method="POST">
+                <div class="field">
+                    <label>Team Name</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="field">
+                    <label>Captain (Select one)</label>
+                    <select name="captain_id">
+                        <option value="">None</option>
+                        {% for player in players %}
+                            <option value="{{ player.player_id }}">{{ player.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <input type="submit" value="Add Team">
+            </form>
+            <div class="form-footer">
+                <a class="btn btn-ghost" href="/teams">Back to Teams</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">Gaming Tournament Management System &copy; 2026</footer>
 </body>
 </html>

@@ -1,31 +1,74 @@
 <!DOCTYPE html>
 <html>
-<head><link rel="stylesheet" href="/static/style.css">
+<head>
+    <link rel="stylesheet" href="/static/style.css">
     <title>Registrations</title>
 </head>
 <body>
-    <h1>Registrations</h1>
-    <a href="/registrations/add">Add New Registration</a>
-    <br><br>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Tournament ID</th>
-            <th>Team ID</th>
-            <th>Registration Date</th>
-            <th>Actions</th>
-        </tr>
-        {% for registration in registrations %}
-        <tr>
-            <td>{{ registration.registration_id }}</td>
-            <td>{{ registration.tournament_id }}</td>
-            <td>{{ registration.team_id }}</td>
-            <td>{{ registration.registration_date }}</td>
-            <td><a href="/registrations/delete/{{ registration.registration_id }}" onclick="return confirm('Are you sure?')">Delete</a></td>
-        </tr>
-        {% endfor %}
-    </table>
-    <br>
-    <a href="/">Back to Home</a>
+<nav class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="/"><span class="logo"></span>Tournament Manager</a>
+        <ul class="nav-links">
+            <li><a href="/players">Players</a></li>
+            <li><a href="/teams">Teams</a></li>
+            <li><a href="/games">Games</a></li>
+            <li><a href="/tournaments">Tournaments</a></li>
+            <li><a class="active" href="/registrations">Registrations</a></li>
+            <li><a href="/matches">Matches</a></li>
+            <li><a href="/results">Results</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a class="btn btn-danger" href="/logout">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-error">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <div class="page-head">
+            <h1>Registrations</h1>
+            <div class="actions">
+                <a class="btn btn-primary" href="/registrations/add">Add New Registration</a>
+            </div>
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tournament ID</th>
+                        <th>Team ID</th>
+                        <th>Registration Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for registration in registrations %}
+                    <tr>
+                        <td>{{ registration.registration_id }}</td>
+                        <td>{{ registration.tournament_id }}</td>
+                        <td>{{ registration.team_id }}</td>
+                        <td>{{ registration.registration_date }}</td>
+                        <td><a class="btn btn-danger" href="/registrations/delete/{{ registration.registration_id }}" onclick="return confirm('Are you sure?')">Delete</a></td>
+                    </tr>
+                    {% else %}
+                    <tr><td class="empty" colspan="5">No registrations yet.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">Gaming Tournament Management System &copy; 2026</footer>
 </body>
 </html>

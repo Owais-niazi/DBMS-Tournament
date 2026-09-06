@@ -1,29 +1,72 @@
 <!DOCTYPE html>
 <html>
-<head><link rel="stylesheet" href="/static/style.css">
+<head>
+    <link rel="stylesheet" href="/static/style.css">
     <title>Teams</title>
 </head>
 <body>
-    <h1>Teams</h1>
-    <a href="/teams/add">Add New Team</a>
-    <br><br>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Captain ID</th>
-            <th>Actions</th>
-        </tr>
-        {% for team in teams %}
-        <tr>
-            <td>{{ team.team_id }}</td>
-            <td>{{ team.name }}</td>
-            <td>{{ team.captain_id }}</td>
-            <td><a href="/teams/delete/{{ team.team_id }}" onclick="return confirm('Are you sure?')">Delete</a></td>
-        </tr>
-        {% endfor %}
-    </table>
-    <br>
-    <a href="/">Back to Home</a>
+<nav class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="/"><span class="logo"></span>Tournament Manager</a>
+        <ul class="nav-links">
+            <li><a href="/players">Players</a></li>
+            <li><a class="active" href="/teams">Teams</a></li>
+            <li><a href="/games">Games</a></li>
+            <li><a href="/tournaments">Tournaments</a></li>
+            <li><a href="/registrations">Registrations</a></li>
+            <li><a href="/matches">Matches</a></li>
+            <li><a href="/results">Results</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a class="btn btn-danger" href="/logout">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-error">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <div class="page-head">
+            <h1>Teams</h1>
+            <div class="actions">
+                <a class="btn btn-primary" href="/teams/add">Add New Team</a>
+            </div>
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Captain ID</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for team in teams %}
+                    <tr>
+                        <td>{{ team.team_id }}</td>
+                        <td>{{ team.name }}</td>
+                        <td>{{ team.captain_id }}</td>
+                        <td><a class="btn btn-danger" href="/teams/delete/{{ team.team_id }}" onclick="return confirm('Are you sure?')">Delete</a></td>
+                    </tr>
+                    {% else %}
+                    <tr><td class="empty" colspan="4">No teams yet.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">Gaming Tournament Management System &copy; 2026</footer>
 </body>
 </html>

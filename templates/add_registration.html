@@ -1,26 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head><link rel="stylesheet" href="/static/style.css">
+<head>
+    <link rel="stylesheet" href="/static/style.css">
     <title>Add Registration</title>
 </head>
 <body>
-    <h1>Add New Registration</h1>
-    <form action="/registrations/add" method="POST">
-        <label>Tournament (Select one):</label><br>
-        <select name="tournament_id" required>
-            {% for tournament in tournaments %}
-                <option value="{{ tournament.tournament_id }}">{{ tournament.name }}</option>
-            {% endfor %}
-        </select><br><br>
-        <label>Team (Select one):</label><br>
-        <select name="team_id" required>
-            {% for team in teams %}
-                <option value="{{ team.team_id }}">{{ team.name }}</option>
-            {% endfor %}
-        </select><br><br>
-        <input type="submit" value="Register Team">
-    </form>
-    <br>
-    <a href="/registrations">Back to Registrations</a>
+<nav class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="/"><span class="logo"></span>Tournament Manager</a>
+        <ul class="nav-links">
+            <li><a href="/players">Players</a></li>
+            <li><a href="/teams">Teams</a></li>
+            <li><a href="/games">Games</a></li>
+            <li><a href="/tournaments">Tournaments</a></li>
+            <li><a class="active" href="/registrations">Registrations</a></li>
+            <li><a href="/matches">Matches</a></li>
+            <li><a href="/results">Results</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a class="btn btn-danger" href="/logout">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="container">
+        <div class="page-head">
+            <h1>Add New Registration</h1>
+        </div>
+
+        <div class="form-card">
+            <form action="/registrations/add" method="POST">
+                <div class="field">
+                    <label>Tournament (Select one)</label>
+                    <select name="tournament_id" required>
+                        {% for tournament in tournaments %}
+                            <option value="{{ tournament.tournament_id }}">{{ tournament.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Team (Select one)</label>
+                    <select name="team_id" required>
+                        {% for team in teams %}
+                            <option value="{{ team.team_id }}">{{ team.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <input type="submit" value="Register Team">
+            </form>
+            <div class="form-footer">
+                <a class="btn btn-ghost" href="/registrations">Back to Registrations</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">Gaming Tournament Management System &copy; 2026</footer>
 </body>
 </html>

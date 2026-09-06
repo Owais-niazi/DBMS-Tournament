@@ -1,26 +1,65 @@
 <!DOCTYPE html>
 <html>
-<head><link rel="stylesheet" href="/static/style.css">
+<head>
+    <link rel="stylesheet" href="/static/style.css">
     <title>Add Tournament</title>
 </head>
 <body>
-    <h1>Add New Tournament</h1>
-    <form action="/tournaments/add" method="POST">
-        <label>Tournament Name:</label><br>
-        <input type="text" name="name" required><br><br>
-        <label>Start Date:</label><br>
-        <input type="date" name="start_date" required><br><br>
-        <label>End Date:</label><br>
-        <input type="date" name="end_date" required><br><br>
-        <label>Game (Select one):</label><br>
-        <select name="game_id" required>
-            {% for game in games %}
-                <option value="{{ game.game_id }}">{{ game.name }}</option>
-            {% endfor %}
-        </select><br><br>
-        <input type="submit" value="Add Tournament">
-    </form>
-    <br>
-    <a href="/tournaments">Back to Tournaments</a>
+<nav class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="/"><span class="logo"></span>Tournament Manager</a>
+        <ul class="nav-links">
+            <li><a href="/players">Players</a></li>
+            <li><a href="/teams">Teams</a></li>
+            <li><a href="/games">Games</a></li>
+            <li><a class="active" href="/tournaments">Tournaments</a></li>
+            <li><a href="/registrations">Registrations</a></li>
+            <li><a href="/matches">Matches</a></li>
+            <li><a href="/results">Results</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a class="btn btn-danger" href="/logout">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="container">
+        <div class="page-head">
+            <h1>Add New Tournament</h1>
+        </div>
+
+        <div class="form-card">
+            <form action="/tournaments/add" method="POST">
+                <div class="field">
+                    <label>Tournament Name</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="field">
+                    <label>Start Date</label>
+                    <input type="date" name="start_date" required>
+                </div>
+                <div class="field">
+                    <label>End Date</label>
+                    <input type="date" name="end_date" required>
+                </div>
+                <div class="field">
+                    <label>Game (Select one)</label>
+                    <select name="game_id" required>
+                        {% for game in games %}
+                            <option value="{{ game.game_id }}">{{ game.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <input type="submit" value="Add Tournament">
+            </form>
+            <div class="form-footer">
+                <a class="btn btn-ghost" href="/tournaments">Back to Tournaments</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">Gaming Tournament Management System &copy; 2026</footer>
 </body>
 </html>

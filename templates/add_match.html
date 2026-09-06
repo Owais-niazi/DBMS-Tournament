@@ -1,34 +1,73 @@
 <!DOCTYPE html>
 <html>
-<head><link rel="stylesheet" href="/static/style.css">
+<head>
+    <link rel="stylesheet" href="/static/style.css">
     <title>Schedule Match</title>
 </head>
 <body>
-    <h1>Schedule New Match</h1>
-    <form action="/matches/add" method="POST">
-        <label>Tournament (Select one):</label><br>
-        <select name="tournament_id" required>
-            {% for tournament in tournaments %}
-                <option value="{{ tournament.tournament_id }}">{{ tournament.name }}</option>
-            {% endfor %}
-        </select><br><br>
-        <label>Team 1 (Select one):</label><br>
-        <select name="team1_id" required>
-            {% for team in teams %}
-                <option value="{{ team.team_id }}">{{ team.name }}</option>
-            {% endfor %}
-        </select><br><br>
-        <label>Team 2 (Select one):</label><br>
-        <select name="team2_id" required>
-            {% for team in teams %}
-                <option value="{{ team.team_id }}">{{ team.name }}</option>
-            {% endfor %}
-        </select><br><br>
-        <label>Match Date/Time:</label><br>
-        <input type="datetime-local" name="match_date" required><br><br>
-        <input type="submit" value="Schedule Match">
-    </form>
-    <br>
-    <a href="/matches">Back to Matches</a>
+<nav class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="/"><span class="logo"></span>Tournament Manager</a>
+        <ul class="nav-links">
+            <li><a href="/players">Players</a></li>
+            <li><a href="/teams">Teams</a></li>
+            <li><a href="/games">Games</a></li>
+            <li><a href="/tournaments">Tournaments</a></li>
+            <li><a href="/registrations">Registrations</a></li>
+            <li><a class="active" href="/matches">Matches</a></li>
+            <li><a href="/results">Results</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a class="btn btn-danger" href="/logout">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="container">
+        <div class="page-head">
+            <h1>Schedule New Match</h1>
+        </div>
+
+        <div class="form-card">
+            <form action="/matches/add" method="POST">
+                <div class="field">
+                    <label>Tournament (Select one)</label>
+                    <select name="tournament_id" required>
+                        {% for tournament in tournaments %}
+                            <option value="{{ tournament.tournament_id }}">{{ tournament.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Team 1 (Select one)</label>
+                    <select name="team1_id" required>
+                        {% for team in teams %}
+                            <option value="{{ team.team_id }}">{{ team.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Team 2 (Select one)</label>
+                    <select name="team2_id" required>
+                        {% for team in teams %}
+                            <option value="{{ team.team_id }}">{{ team.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Match Date/Time</label>
+                    <input type="datetime-local" name="match_date" required>
+                </div>
+                <input type="submit" value="Schedule Match">
+            </form>
+            <div class="form-footer">
+                <a class="btn btn-ghost" href="/matches">Back to Matches</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">Gaming Tournament Management System &copy; 2026</footer>
 </body>
 </html>
