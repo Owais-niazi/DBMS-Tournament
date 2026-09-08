@@ -373,6 +373,35 @@ def add_result():
     conn.close()
     return render_template('add_result.html', matches=matches, teams=teams)
 
+@app.route('/players/edit/<int:player_id>', methods=['GET', 'POST'])
+@admin_required
+def edit_player(player_id):
+    conn = get_db_connection()
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        user_id = request.form['user_id']
+
+        cursor = conn.cursor()
+        cursor.execute("UPDATE players SET name = %s, email = %s, user_id = %s WHERE player_id = %s", (name, email, user_id, player_id))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return redirect(url_for('list_players'))
+
+    # Fetch current player details
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM players WHERE player_id = %s", (player_id,))
+    player = cursor.fetchone()
+
+    # Fetch users for dropdown selection
+    cursor.execute("SELECT user_id, username FROM users")
+    users = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+    return render_template('edit_player.html', player=player, users=users)
+
 @app.route('/results/delete/<int:result_id>')
 @admin_required
 def delete_result(result_id):
