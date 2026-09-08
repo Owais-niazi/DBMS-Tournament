@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Edit Player</title>
+</head>
+<body>
+<nav class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="/"><span class="logo"></span>Tournament Manager</a>
+        <ul class="nav-links">
+            <li><a class="active" href="/players">Players</a></li>
+            <li><a href="/teams">Teams</a></li>
+            <li><a href="/games">Games</a></li>
+            <li><a href="/tournaments">Tournaments</a></li>
+            <li><a href="/registrations">Registrations</a></li>
+            <li><a href="/matches">Matches</a></li>
+            <li><a href="/results">Results</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a class="btn btn-danger" href="/logout">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="container">
+        <div class="page-head">
+            <h1>Edit Player</h1>
+        </div>
+
+        <div class="form-card">
+            <form action="/players/edit/{{ player.player_id }}" method="POST">
+                <div class="field">
+                    <label>Name</label>
+                    <input type="text" name="name" value="{{ player.name }}" required>
+                </div>
+                <div class="field">
+                    <label>Email</label>
+                    <input type="email" name="email" value="{{ player.email }}" required>
+                </div>
+                <div class="field">
+                    <label>User (Select one)</label>
+                    <select name="user_id" required>
+                        {% for user in users %}
+                            <option value="{{ user.user_id }}" {% if user.user_id == player.user_id %}selected{% endif %}>
+                                {{ user.username }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <input type="submit" value="Update Player">
+            </form>
+            <div class="form-footer">
+                <a class="btn btn-ghost" href="/players">Back to Players</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">Gaming Tournament Management System &copy; 2026</footer>
+</body>
+</html>
