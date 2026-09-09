@@ -56,7 +56,12 @@
                         <td>{{ player.player_id }}</td>
                         <td>{{ player.name }}</td>
                         <td>{{ player.email }}</td>
-                        <td><a class="btn btn-danger" href="/players/delete/{{ player.player_id }}" onclick="return confirm('Are you sure?')">Delete</a></td>
+                        
+                        <!-- Inside templates/players.html -->
+                        <td>
+                            <a class="btn btn-ghost" href="/players/edit/{{ player.player_id }}">Edit</a>
+                            <a class="btn btn-danger" href="/players/delete/{{ player.player_id }}" onclick="return confirm('Are you sure?')">Delete</a>
+                        </td>
                     </tr>
                     {% else %}
                     <tr><td class="empty" colspan="4">No players yet.</td></tr>
